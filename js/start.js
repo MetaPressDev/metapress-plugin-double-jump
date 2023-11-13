@@ -17,7 +17,6 @@ export default class DoubleJumpPlugin {
     playerJumped = false;
     playerDoubleJumped = false;
     wasGrounded = false;
-    jumpHeldIn = false;
     /** Called on load */
     onLoad() {
         this.checkAvatarModifier()
@@ -31,26 +30,25 @@ export default class DoubleJumpPlugin {
         let modifier = metapress.entities.getModifier(metapress.avatar.currentUserEntity.id, 'avatar-controller')
         if (this.avatarController == modifier) return
         this.avatarController = modifier        
-        console.log(this.avatarController)
     }
-    loggedJump = false
+
     $onRender() {
-        if(metapress.input?.actionActive('jump') && !this.loggedJump){
-            console.log(metapress.input?.actionActive('jump'));
-            this.loggedJump = true
-        }
-        if(!metapress.input?.actionActive('jump') && this.loggedJump){
-            console.log(metapress.input?.actionActive('jump'));
-            this.loggedJump = false
-        }
-        if(this.playerJumped && this.playerDoubleJumped == false && metapress.input?.actionActive('jump') && this.jumpHeldIn== false){
-            this.playerDoubleJumped = true;
+        if (this.avatarController?.isGrounded) {this.playerJumped = false; this.playerDoubleJumped = false;}
+    }
+
+    $input_actionPressed(name){
+
+        if(this.playerJumped && this.playerDoubleJumped == false && name == "jump"){
+            this.playerDoubleJumped = true;console.log("playerDoubleJumped", name);
             this.avatarController.yVelocity = this.avatarController.entity.avatar_jumpHeight || 5
             this.avatarController.overrideAnimation({ animationStart: 'jump_start', animation: 'jump_loop', animationEnd: 'jump_end', interruptOnGround: true, pauseAtEnd: true })
         }
-        if(this.wasGrounded && metapress.input?.actionActive('jump')) {this.playerJumped = true; this.wasGrounded=false;}
-        if (this.avatarController?.isGrounded && this.wasGrounded == false) {this.wasGrounded = true; this.playerJumped = false; this.playerDoubleJumped = false;}
-        this.jumpHeldIn = metapress.input?.actionActive('jump');
+        if(name == "jump") {this.playerJumped = true;console.log("Jumped", name);}
+        console.log("input_actionPressed 2", name)
     }
 
+    $input_actionReleased(name){
+
+        console.log("input_actionReleased 22", name)
+    }
 }
