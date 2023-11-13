@@ -16,7 +16,6 @@ export default class DoubleJumpPlugin {
     avatarController = null
     playerJumped = false;
     playerDoubleJumped = false;
-    wasGrounded = false;
     /** Called on load */
     onLoad() {
         this.checkAvatarModifier()
@@ -37,18 +36,15 @@ export default class DoubleJumpPlugin {
     }
 
     $input_actionPressed(name){
-
         if(this.playerJumped && this.playerDoubleJumped == false && name == "jump"){
-            this.playerDoubleJumped = true;console.log("playerDoubleJumped", name);
+            this.playerDoubleJumped = true;
             this.avatarController.yVelocity = this.avatarController.entity.avatar_jumpHeight || 5
             this.avatarController.overrideAnimation({ animationStart: 'jump_start', animation: 'jump_loop', animationEnd: 'jump_end', interruptOnGround: true, pauseAtEnd: true })
         }
-        if(name == "jump") {this.playerJumped = true;console.log("Jumped", name);}
-        console.log("input_actionPressed 2", name)
+        if(name == "jump") {this.playerJumped = true;}
     }
 
     $input_actionReleased(name){
 
-        console.log("input_actionReleased 22", name)
     }
 }
