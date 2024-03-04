@@ -40,7 +40,7 @@ export default class DoubleJumpPlugin {
 
     $input_actionPressed(name) {
         if (this.playerJumped && this.playerDoubleJumped == false && name == "jump") {
-
+            this.amountOfDoubleJumpsTaken++;
             // console.log("Double Jumped", this.avatarController?.entity?.avatar_amountOfDoubleJumps, this.amountOfDoubleJumpsTaken)
             if (this.avatarController.entity.avatar_amountOfDoubleJumps) {
                 if (this.avatarController.entity.avatar_amountOfDoubleJumps > this.amountOfDoubleJumpsTaken)
@@ -49,7 +49,7 @@ export default class DoubleJumpPlugin {
             } else {
                 this.playerDoubleJumped = true;
             }
-            this.amountOfDoubleJumpsTaken++;
+
             if (this.avatarController.yVelocity < 0)
                 this.avatarController.yVelocity = this.avatarController.entity.avatar_jumpHeight || 5
             else this.avatarController.yVelocity += this.avatarController.entity.avatar_jumpHeight || 5
