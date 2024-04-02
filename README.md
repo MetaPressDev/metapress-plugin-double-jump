@@ -1,18 +1,31 @@
-# MetaPress Plugin
+# Double Jump
+a MetaPress Plugin
 
-This is a plugin for [MetaPress](https://get.metapress.dev).
+Allows visitors of the world to double jump.
 
-## Building
+## 🔨 Installation
+You can install this plugin the same way you install any plugin into your WordPress website.
 
-- Make sure you have [Node](https://nodejs.org) installed.
-- Run `npm install` to install dependencies.
-- Run `npm run build` to build the plugin.
-- The plugin code is at `js/start.js`.
-- The build output will be saved to the `dist` folder. The ZIP file contains the WordPress plugin.
+There are two ways to get the plugin:
 
-> If using the VSCode Dev Container, you can run `npm run dev` to push your plugin to the included WordPress server and watch for changes.
+1. Download the plugin from the release page
+2. Build the plugin from the source code (run npm run build in the root directory), then find the .zip file in the 'dist' directory
+To install the plugin into your WordPress website, you can do the following:
 
-## Installation
+On your WordPress dashboard (usually /wp-admin), click "Plugins" in the left sidebar
+1. Click the "Add New Plugin" button at the top of the page
+2. Click the "Upload Plugin" button at the top of the page
+3. Choose the .zip file
+4. Click the "Install Now" button
+5. Click the "Activate" button
+All set! 🎉
 
-- Download the ZIP file from the release page, or build it yourself.
-- In WordPress, go to Plugins > Add New > Upload Plugin and select the ZIP file.
+## 🤔 Using the plugin
+When put in the world, you can double jump, to customize the settings:
+
+1. Get in the world with the editor privalleges.
+2. Select the global region.
+3. Add the double jump settings modifier.
+4. Customize the settings to how you want them.
+
+Done! You will be able to jump while in the air based off of your settings! 🚀
