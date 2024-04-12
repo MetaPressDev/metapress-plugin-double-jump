@@ -17,11 +17,11 @@ add_action('metapress_register_plugin', function($register) {
 
     // Return template info
     $register(array(
-        'id' => "com.metapress.doublejump",
-        'name' => "Double Jump",
-        'description' => "Double Jump",
-        'version' => "0.0.1",
-        'author' => "Metapress C Nel",
+        'id' => "REPLACE_METAPRESS_ID",
+        'name' => "REPLACE_METAPRESS_NAME",
+        'description' => "REPLACE_METAPRESS_DESCRIPTION",
+        'version' => "REPLACE_PACKAGE_VERSION",
+        'author' => "REPLACE_PACKAGE_AUTHOR",
     ));
 
 });
