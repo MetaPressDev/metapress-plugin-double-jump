@@ -1,6 +1,6 @@
 {
     "name": "metapress-plugin-double-jump",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Double Jump",
     "main": "js/loader.js",
     "private": true,
