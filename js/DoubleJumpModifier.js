@@ -32,7 +32,7 @@ export default class DoubleJumpModifier {
                 tags: 'double jump, jump, settings, jump height, double jump height, double jump amount, amount of double jumps, double jump settings',
                 content: `
                     <p>Double Jump Settings</p>
-                    <p>Settings to adjust jump height. This is an external plugin addition</p>
+                    <p>Settings to adjust jump height. This is from an external plugin.</p>
                     <p>Jump Height: The height of the jump</p>
                     <p>Amount of Double Jumps: The amount of double jumps the player can do</p>
                 `,

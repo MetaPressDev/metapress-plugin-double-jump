@@ -60,45 +60,44 @@ export default class DoubleJumpPlugin {
     }
 
     $ai_getKnowledgeBaseEntries = () => {
-        return [
-            {
-                id: `${this.id}:addDoubleJumpSettings`,
-                type: 'action',
-                name: 'Add Double Jump Settings',
-                tags: 'add double Jump, double jump settings, add settings, add double jump settings',
-                content: `
-                    Assistant instruction: Run this action when the user wants to add the double jump settings to the scene. If the user specifies height and amount, use input as an object with {jumpHeight: x, jumpAmount: y} Don't mention it otherwise. This is a developer feature, don't mention it to normal users.
+        if (metapress.editor.canEdit)
+            return [
+                {
+                    id: `${this.id}:addDoubleJumpSettings`,
+                    type: 'action',
+                    name: 'Add Double Jump Settings',
+                    tags: 'add double Jump, double jump settings, add settings, add double jump settings',
+                    content: `
+                    Assistant instruction: Run this action when the user wants to add the double jump settings to the scene. Don't mention it otherwise. This is a developer feature, don't mention it to normal users.
                 `,
-                action: input => {
-                    let json = JSON.parse(input)
-                    console.log("input from action",json)
-                    return this.addDoubleJumpSettings(input.jumpHeight||5, input.jumpAmount||1)
-                }
-            },
-        ]
+                    action: input => {
+                        return this.addDoubleJumpSettings()
+                    }
+                },
+            ]
+        else return []
     }
 
     addDoubleJumpSettings() {
         try {
-
-
             // find the region object in the scene
             let region = metapress.entities.all.find(entity => entity.type == 'region')
             // if region not found, return an error
             if (!region) return 'Region not found, could not finish the action'
             // add the double jump settings to the region
-            /*        metapress.entities.update(this.props.selectedEntityID, {
-                ['modifier:' + modifier.id]: true
-            })*/
             metapress.entities.update(region.id, {
                 ['modifier:' + this.createModifier().id]: true
             })
+            metapress.plugins.sendEvent('onUnsavedFieldsChanged')
+            metapress.editor.showEditor();
+            metapress.editor.editEntity(region.id);
+            
         } catch (error) {
-            console.warn('addDoubleJumpSettings:',error)
+            console.warn('addDoubleJumpSettings:', error)
             return 'There was an error adding the Double Jump Settings'
         }
         // return success
-        return 'Double Jump Settings added'
+        return 'Double Jump settings successfully added to the region object and selected it'
     }
 
     createModifier() {
