@@ -23,6 +23,23 @@ export default class DoubleJumpModifier {
         this.checkAvatarModifier()
     }
 
+    $ai_getKnowledgeBaseEntries = () => {
+        return [
+            {
+                id: `${this.id}:doubleJumpSettings`,
+                type: 'info',
+                name: 'Double Jump Settings',
+                tags: 'double jump, jump, settings, jump height, double jump height, double jump amount, amount of double jumps, double jump settings',
+                content: `
+                    <p>Double Jump Settings</p>
+                    <p>Settings to adjust jump height. This is an external plugin addition</p>
+                    <p>Jump Height: The height of the jump</p>
+                    <p>Amount of Double Jumps: The amount of double jumps the player can do</p>
+                `,
+            },
+        ]
+    }
+
     checkAvatarModifier() {
 
         let modifier = metapress.entities.getModifier(metapress.avatar.currentUserEntity.id, 'avatar-controller')
